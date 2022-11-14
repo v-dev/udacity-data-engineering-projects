@@ -9,8 +9,20 @@ See individual directories for the appropriate projects.
     docker network create dbnet    
 
 # Use local postgres container
+Stop running container:
 
-    docker kill pgres ; sleep 2; docker rm pgres ; sleep 1; docker run --network dbnet -p5432:5432 --name pgres -e POSTGRES_PASSWORD=pass -d postgres
+    docker kill pgres ; sleep 2; docker rm pgres
+
+Start new container:
+
+    docker run --network dbnet \
+    -p5432:5432 \
+    --name pgres \
+    -e POSTGRES_USER=student \
+    -e POSTGRES_PASSWORD=student \
+    -e POSTGRES_DB=studentdb \
+    -d postgres
+
 
 # Use local cassandra container
 
