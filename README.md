@@ -1,7 +1,7 @@
 # udacity-data-engineering-projects
 Projects for the [Udacity Data Engineering Nanodegree](https://www.udacity.com/course/data-engineer-nanodegree--nd027)
 
-See individual directories for the appropriate projects.
+> See individual directories for the appropriate projects.
 
 
 # Setup Docker network
