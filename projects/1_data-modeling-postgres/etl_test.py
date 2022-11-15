@@ -33,3 +33,11 @@ def test_songplays_count(songplays_df):
 def test_songs_duration(songs_df):
     durations = songs_df['duration'].head()
     print(f"durations: {durations}")
+    # TODO: make an assertion
+
+
+def test_songsplays_with_artist(postgres_docker_conn):
+    df = pd.read_sql('SELECT * FROM songplays WHERE song_id is NOT NULL and artist_id is NOT NULL',
+                     postgres_docker_conn)
+    count = df.count()[0]
+    assert_that(count).is_equal_to(1)
