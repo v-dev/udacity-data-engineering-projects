@@ -39,3 +39,10 @@ Below are the 3 required python files:
 Below are practice and test Jupyter notebook files. They are not required, but helpful:
 * `etl.ipynb` : Initial practice scripts with overall instructions to program the real ETL.
 * `test.ipynb` : Scripts to check the created tables and their structure and contents for basic rubric correctness.
+
+# Running pytests
+Run the Pytest file, `etl_test.py` from the command line as:
+
+    pytest -rA
+
+As the time of this writing, Nov 14, 2022, 11pm PT, 6 tests should pass.
