@@ -66,7 +66,6 @@ CREATE TABLE IF NOT EXISTS time (
 
 # INSERT RECORDS
 
-# 9 columns for songplays table
 songplay_table_insert = ("""
 INSERT INTO songplays
 VALUES (DEFAULT, %s, %s, %s, %s, %s, %s, %s, %s)
@@ -74,7 +73,6 @@ ON CONFLICT (songplay_id)
 DO NOTHING
 """)
 
-# 5 columns for users table
 user_table_insert = ("""
 INSERT INTO users
 VALUES (%s, %s, %s, %s, %s)
