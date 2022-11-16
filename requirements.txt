@@ -1,5 +1,6 @@
 assertpy==1.1
 cassandra-driver==3.25.0
+ipython-sql==0.4.1
 notebook==6.5.2
 pandas==1.5.1
 psycopg2==2.9.5

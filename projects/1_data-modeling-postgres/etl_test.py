@@ -38,17 +38,24 @@ def test_songs_duration(songs_df):
 
 
 def test_users_count(postgres_docker_conn):
-    users = pd.read_sql('select * from users', postgres_docker_conn)
-    count = users.count()[0]
+    users = pd.read_sql('SELECT COUNT(1) FROM users', postgres_docker_conn)
+    count = users['count'].values
     expected_users_rows = 96
     assert_that(count).is_equal_to(expected_users_rows)
 
 
 def test_artists_count(postgres_docker_conn):
-    artists = pd.read_sql('select * from artists', postgres_docker_conn)
-    count = artists.count()[0]
+    artists = pd.read_sql('SELECT COUNT(1) FROM artists', postgres_docker_conn)
+    count = artists['count'].values
     expected_artists_rows = 69
     assert_that(count).is_equal_to(expected_artists_rows)
+
+
+def test_time_count(postgres_docker_conn):
+    time = pd.read_sql('SELECT COUNT(1) FROM time', postgres_docker_conn)
+    count = time['count'].values
+    expected_time_rows = 6813
+    assert_that(count).is_equal_to(expected_time_rows)
 
 
 def has_5_precision(a_double):
@@ -62,9 +69,9 @@ def has_5_precision(a_double):
 
 
 def test_songsplays_with_artist(postgres_docker_conn):
-    df = pd.read_sql('SELECT * FROM songplays WHERE song_id is NOT NULL and artist_id is NOT NULL',
+    df = pd.read_sql('SELECT COUNT(1) FROM songplays WHERE song_id is NOT NULL and artist_id is NOT NULL',
                      postgres_docker_conn)
-    count = df.count()[0]
+    count = df['count'].values
     assert_that(count).is_equal_to(1)
 
 
