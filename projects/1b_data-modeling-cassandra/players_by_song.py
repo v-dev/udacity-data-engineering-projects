@@ -1,7 +1,17 @@
+"""
+SQL for query 3:
+Query 3: Give me every user name (first and last) in my music app history who listened to
+the song 'All Hands Against His Own'
+
+Which, in SQL is:
+SELECT user
+  FROM players_by_song
+ WHERE song = 'All Hands Against His Own';
+"""
+
 TABLE_NAME = 'players_by_song'
 drop = f'DROP TABLE IF EXISTS {TABLE_NAME}'
 
-## TO-DO: Query 3: Give me every user name (first and last) in my music app history who listened to the song 'All Hands Against His Own'
 create = f"""
 CREATE TABLE IF NOT EXISTS {TABLE_NAME} (
     song    TEXT,
@@ -16,8 +26,6 @@ INSERT INTO {TABLE_NAME} (song, user_id, user)
 VALUES (%s, %s, %s);
 """
 
-# Query 3: Give me every user name (first and last) in my music app history who listened to the
-# song 'All Hands Against His Own'
 select = f"""
 SELECT user
   FROM {TABLE_NAME}
