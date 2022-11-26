@@ -10,6 +10,7 @@ import glob
 import os
 import time
 
+import pandas as pd
 from cassandra.cluster import Cluster
 
 import players_by_song
@@ -132,6 +133,19 @@ def populate_tables(session):
         print(f"inserts in {stop - start:0.4f} seconds")
 
 
+def select_tables(session):
+    """
+    Run initial given queries and store results
+    """
+    songs_by_session_df = pd.DataFrame(list(session.execute(songs_by_session.select)))
+    songs_by_player_df = pd.DataFrame(list(session.execute(songs_by_player.select)))
+    players_by_song_df = pd.DataFrame(list(session.execute(players_by_song.select)))
+
+    return {'query1': songs_by_session_df,
+            'query2': songs_by_player_df,
+            'query3': players_by_song_df}
+
+
 def main():
     """
     Main, or starting entrypoint for ETL process.
@@ -140,6 +154,7 @@ def main():
     """
     cluster = None
     session = None
+    results = {}
 
     # filepaths = create_filepaths()
     # create_final_csv(filepaths)
@@ -153,12 +168,23 @@ def main():
         drop_tables(session)
         create_tables(session)
         populate_tables(session)
+        results = select_tables(session)
 
     except Exception as e:
         print(f"Exception:\n{e}")
     finally:
         session.shutdown()
         cluster.shutdown()
+
+    print("\nartist, song title and song's length ... that was heard during sessionId = 338, and itemInSession  = 4")
+    print(results['query1'].to_string())
+
+    print("\nonly name of artist, song (sorted by itemInSession) and user (first and last name) for")
+    print('userid = 10, sessionid = 182')
+    print(results['query2'].to_string())
+
+    print("\nevery user name (first and last) ... who listened to the song 'All Hands Against His Own'")
+    print(results['query3'].to_string())
 
 
 if __name__ == "__main__":
