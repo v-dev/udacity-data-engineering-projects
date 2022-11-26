@@ -8,6 +8,11 @@ It imports 3 supporting modules for the different tables created, for the 3 diff
 2. `songs_by_player.py`
 3. `players_by_song.py`
 
+# Extract `event_data` directory
+Run the following to unzip the `event_data` directory:
+
+    tar zxf event_data.tar.gz
+
 # Pytest
 The project has a Pytest file, `project1b_test.py`, to validate the tables and data. It can be run from
 the same directory as this readme, like so:
