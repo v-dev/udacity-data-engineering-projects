@@ -16,17 +16,17 @@ drop = f'DROP TABLE IF EXISTS {TABLE_NAME}'
 
 create = f"""
 CREATE TABLE IF NOT EXISTS {TABLE_NAME} (
+    session_id      DECIMAL,
+    item_in_session DECIMAL,
     artist_name     TEXT,
     song            TEXT,
     length          DOUBLE,
-    session_id      DECIMAL,
-    item_in_session DECIMAL,
     PRIMARY KEY ( session_id, item_in_session )
 );
 """
 
 insert = f"""
-INSERT INTO {TABLE_NAME} (artist_name, song, length, session_id, item_in_session)
+INSERT INTO {TABLE_NAME} (session_id, item_in_session, artist_name, song, length)
 VALUES (%s, %s, %s, %s, %s);
 """
 
