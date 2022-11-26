@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS {TABLE_NAME} (
     length          DOUBLE,
     session_id      DECIMAL,
     item_in_session DECIMAL,
-    PRIMARY KEY ( (session_id, item_in_session), artist_name )
+    PRIMARY KEY ( session_id, item_in_session )
 );
 """
 
