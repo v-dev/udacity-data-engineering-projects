@@ -32,7 +32,6 @@ def main():
 
     conn = psycopg2.connect("host={} dbname={} user={} password={} port={}".format(*config['CLUSTER'].values()))
     cur = conn.cursor()
-    select_count(cur, 'vstudent_temp')
 
     load_staging_tables(cur, conn)
     select_count(cur, STG_EVENTS_TABLE)  # expecting: 8,056
