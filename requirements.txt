@@ -1,8 +1,13 @@
 assertpy==1.1
+boto3==1.26.27
 cassandra-driver==3.25.0
 ipython-sql==0.4.1
+matplotlib==3.6.2
 notebook==6.5.2
 pandas==1.5.1
+pgcli==3.5.0
 psycopg2==2.9.5
 pytest==7.2.0
+redshift-connector==2.0.909
+retrying==1.3.4
 SQLAlchemy==1.4.42
